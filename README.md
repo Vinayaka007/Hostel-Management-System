@@ -1,8 +1,8 @@
 This project is designed to streamline and automate the daily operations of a hostel. It provides an efficient platform for hostel administrators to manage room allotment, student registrations, complaints, notices, and other hostel activities seamlessly. The system ensures transparency, accuracy, and ease of access for both students and administrators.
 
-**Key features include:**
+<ul>**Key features include:**</ul>ul>
 
-<ul>Student Registration and Login: Secure student onboarding with individual accounts.</ul>
+<li>Student Registration and Login: Secure student onboarding with individual accounts.</li>
 
 Room Allotment Management: Automated allocation of rooms to students based on availability.
 
