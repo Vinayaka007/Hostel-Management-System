@@ -1,0 +1,19 @@
+{% extends "admin_base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Post a Notice</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="d-flex">
+            <div >
+                <button type="submit" class="btn btn-primary" >Post Notice</button>
+            </div>
+            <div style="margin-left: 10px;">
+                <button class="btn btn-primary"><a href="{% url "notice_list" %}">Post Notice</a></button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

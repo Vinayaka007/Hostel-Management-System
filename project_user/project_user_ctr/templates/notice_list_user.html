@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 style="margin-top: 0; margin-left:50px; color: #333;">Notice Board</h2>
+<main style="padding: 20px;">
+    <ul style="list-style-type: none; padding: 0;">
+        {% for notice in notices %}
+            <li style="background-color: white; margin-bottom: 15px; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);width: 600px;    margin-left: 70px;">
+                <h2 style="margin-top: 0; color: #333;">{{ notice.title }}</h2>
+                <p style="font-size: 16px; color: #666;">{{ notice.content }}</p>
+                <p><small style="display: block; margin-top: 10px; font-size: 14px; color: #999;">Posted by {{ notice.author }} on {{ notice.created_at }}</small></p>
+            </li>
+        {% empty %}
+            <p>No notices available.</p>
+        {% endfor %}
+    </ul>
+</main>
+{% endblock content %}

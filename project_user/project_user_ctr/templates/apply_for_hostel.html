@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% block content %}
+<html lang="en">
+
+<head>
+    <title>Hostel Application</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body style="background-color: #f8f9fa; margin: 0; padding: 0;">
+    
+    <div class="container" style="background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin-top: 5%;">
+        <h1 class="text-center" style="color: #343a40;">Hostel Application Form</h1>
+        <hr>
+
+        {% if messages %}
+        <div class="alert alert-info" style="background-color: #e9ecef; color: #0c5460;">
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-md-6">
+                <h2 style="color: #343a40;">User Details</h2>
+                <div class="form-group">
+                    <label for="full_name" style="font-weight: 600;">Full Name:</label>
+                    <input type="text" class="form-control" id="full_name" value="{{ user.full_name|default_if_none:'' }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="father_name" style="font-weight: 600;">Father's Name:</label>
+                    <input type="text" class="form-control" id="father_name" value="{{ user.father_name|default_if_none:'' }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="mobile_no" style="font-weight: 600;">Mobile No:</label>
+                    <input type="text" class="form-control" id="mobile_no" value="{{ user.mobile_no|default_if_none:'' }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="email" style="font-weight: 600;">Email:</label>
+                    <input type="email" class="form-control" id="email" value="{{ user.email|default_if_none:'' }}" readonly>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2 style="visibility: hidden;">&nbsp;</h2>
+                <div class="form-group">
+                    <label for="institution" style="font-weight: 600;">Institution:</label>
+                    <input type="text" class="form-control" id="institution" value="{{ user.institution|default_if_none:'' }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="course" style="font-weight: 600;">Course:</label>
+                    <input type="text" class="form-control" id="course" value="{{ user.course|default_if_none:'' }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="reg_no" style="font-weight: 600;">Registration No:</label>
+                    <input type="text" class="form-control" id="reg_no" value="{{ user.reg_no|default_if_none:'' }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="address" style="font-weight: 600;">Address:</label>
+                    <input type="text" class="form-control" id="address" value="{{ user.address|default_if_none:'' }}" readonly>
+                </div>
+            </div>
+        </div>
+
+        <h2 style="color: #343a40;">Hostel Application</h2>
+        <form method="post" enctype="multipart/form-data" id="hostel-application-form">
+            {% csrf_token %}
+            <div class="row" style="margin-bottom: 20px;">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="photo" style="font-weight: 600;">Photo:</label>
+                        {{ form.photo }}
+                    </div>
+                    <div class="form-group">
+                        <label for="number_of_sharing" style="font-weight: 600;">Number of Sharing:</label>
+                        {{ form.number_of_sharing }}
+                    </div>
+                    <div class="form-group">
+                        <label for="mother_name" style="font-weight: 600;">Mother's Name:</label>
+                        {{ form.mother_name }}
+                    </div>
+                    <div class="form-group">
+                        <label for="occupation" style="font-weight: 600;">Occupation:</label>
+                        {{ form.occupation }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="landline_num" style="font-weight: 600;">Landline Number:</label>
+                        {{ form.landline_num }}
+                    </div>
+                    <div class="form-group">
+                        <label for="emergency_contact" style="font-weight: 600;">Emergency Contact:</label>
+                        {{ form.emergency_contact }}
+                    </div>
+                    <div class="form-group">
+                        <label for="father_email" style="font-weight: 600;">Father's Email:</label>
+                        {{ form.father_email }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary" style="background-color: #007bff; border: none; color: white;">Submit Application</button>
+                    </div>
+                    <div class="col-md-6 mt-3">
+                        <a href="{% url 'student_page' %}" class="btn" style="background-color: grey; color: white; text-decoration: none;">Back</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#hostel-application-form').on('submit', function(event) {
+                event.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    url: '{% url "apply_for_hostel" %}',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        if (response.pdf) {
+                            var blob = new Blob([response.pdf], { type: 'application/pdf' });
+                            var link = document.createElement('a');
+                            link.href = window.URL.createObjectURL(blob);
+                            link.download = 'hostel_application.pdf';
+                            link.click();
+                            location.reload();
+                        }
+                    },
+                    error: function(xhr, errmsg, err) {
+                        console.log(xhr.status + ": " + xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+
+    
+</body>
+
+</html>
+{% endblock content %}

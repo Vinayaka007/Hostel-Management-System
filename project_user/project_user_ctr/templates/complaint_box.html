@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Complaint Box</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+  <h2>Student Complaint Box</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" value="{{ form.name.value }}" readonly required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" value="{{ form.email.value }}" readonly required>
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone Number:</label>
+      <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your phone number" value="{{ form.phone.value }}" readonly required>
+    </div>
+    <div class="form-group">
+      <label for="register_number">Register No:</label>
+      <input type="tel" class="form-control" id="register_number" name="register_number" placeholder="Enter your Register number" value="{{ form.register_number.value }}" readonly required>
+    </div>
+    <div class="form-group">
+      <label for="subject">Subject:</label>
+      <select class="form-control" id="subject" name="subject" required>
+        <option value="">Select a subject</option>
+        <option value="Food" {% if form.subject.value == "Food" %}selected{% endif %}>Food</option>
+        <option value="Room" {% if form.subject.value == "Room" %}selected{% endif %}>Room</option>
+        <option value="Cleaning" {% if form.subject.value == "Cleaning" %}selected{% endif %}>Cleaning</option>
+        <option value="Raging" {% if form.subject.value == "Raging" %}selected{% endif %}>Raging</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="complaint">Complaint:</label>
+      <textarea class="form-control" id="complaint" name="complaint" rows="5" placeholder="Describe your complaint" required>{{ form.complaint.value }}</textarea>
+    </div>
+    
+    <button type="submit" class="btn btn-danger">Submit</button>
+  </form>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+{% endblock content %}

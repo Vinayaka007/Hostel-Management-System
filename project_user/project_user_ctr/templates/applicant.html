@@ -1,0 +1,49 @@
+{% extends "admin_base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Hostel Applications List</h2>
+    <table class="table table-bordered">
+        <tbody>
+            {% for app in hostel_apps %}
+            <tr class="clickable-row" data-toggle="collapse" data-target="#details-{{ app.id }}">
+                <td>{{ app.full_name }}</td>
+                <!-- Other cells can be included or omitted as per need -->
+            </tr>
+            <tr id="details-{{ app.id }}" class="collapse">
+                <td colspan="17">
+                    <div class="detailed-info">
+                        <p><strong>Father's Name:</strong> {{ app.father_name }}</p>
+                        <p><strong>Mobile No:</strong> {{ app.mobile_no }}</p>
+                        <p><strong>Email:</strong> {{ app.email }}</p>
+                        <p><strong>Address:</strong> {{ app.address }}</p>
+                        <p><strong>Institution:</strong> {{ app.institution }}</p>
+                        <p><strong>Course:</strong> {{ app.course }}</p>
+                        <p><strong>Reg No:</strong> {{ app.reg_no }}</p>
+                        <p><strong>Academic Year:</strong> {{ app.ac_year }}</p>
+                        <p><strong>Course Year:</strong> {{ app.course_year }}</p>
+                        <p><strong>Photo:</strong> <img src="{{ app.photo.url }}" alt="Photo" style="width: 100px; height: auto;"></p>
+                        <p><strong>Number of Sharing:</strong> {{ app.number_of_sharing }}</p>
+                        <p><strong>Mother's Name:</strong> {{ app.mother_name }}</p>
+                        <p><strong>Occupation:</strong> {{ app.occupation }}</p>
+                        <p><strong>Landline No:</strong> {{ app.landline_num }}</p>
+                        <p><strong>Emergency Contact:</strong> {{ app.emergency_contact }}</p>
+                        <p><strong>Father's Email:</strong> {{ app.father_email }}</p>
+                        <p><strong>Applied On:</strong> {{ app.applied_on }}</p>
+                        <!-- Action buttons -->
+                        <a href="{% url 'accept_application' app.id %}" class="btn btn-success btn-sm">Accept</a>
+                        <a href="{% url 'delete_application' app.id %}" class="btn btn-danger btn-sm">Delete</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Include Bootstrap JavaScript (for collapse functionality) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{% endblock %}

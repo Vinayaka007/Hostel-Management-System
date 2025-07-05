@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Double Slider Template</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f8f9fa;
+            margin: 0;
+        }
+        .wrapper {
+            margin-left: 90px;
+            max-width: 900px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 15px 20px rgba(0,0,0,0.1);
+        }
+        .title-text {
+            display: flex;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .title {
+            width: 50%;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 15px;
+            transition: background-color 0.3s;
+        }
+        .title.active {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .content-container {
+            position: relative;
+            overflow: hidden;
+        }
+        .content {
+            display: none;
+            padding: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .content.active {
+            display: block;
+        }
+        .input-area {
+            display: none;
+            padding: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        .input-area.active {
+            display: block;
+        }
+        .form-row {
+            margin-bottom: 15px;
+        }
+        .room-details {
+            margin-top: 20px;
+        }
+        .room-details-item {
+            width: 400px;
+            padding: 10px;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            margin-left: -82px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="title-text">
+            <div class="title section1 active">Floor 1</div>
+            <div class="title section2">Floor 2</div>
+        </div>
+        <div class="content-container">
+            <div class="content section1 active">
+                <div class="container d-flex justify-content-center align-items-center">
+                    <div style="width: 509px;">
+                        <button class="room-btn btn btn-primary" data-floor="1" data-room="101" style="margin-bottom: 5px;">Room 101</button>
+                        <button class="room-btn btn btn-primary" data-floor="1" data-room="102" style="margin-bottom: 5px;">Room 102</button>
+                        <button class="room-btn btn btn-primary" data-floor="1" data-room="103" style="margin-bottom: 5px;">Room 103</button>
+                        <button class="room-btn btn btn-primary" data-floor="1" data-room="104" style="margin-bottom: 5px;">Room 104</button>
+                        <button class="room-btn btn btn-primary" data-floor="1" data-room="105" style="margin-bottom: 5px;">Room 105</button>
+                        <button class="room-btn btn btn-primary" data-floor="1" data-room="106" style="margin-bottom: 5px;">Room 106</button>
+                        <button class="room-btn btn btn-primary" data-floor="1" data-room="107" style="margin-bottom: 5px;">Room 107</button>
+                        <button class="room-btn btn btn-primary" data-floor="1" data-room="108" style="margin-bottom: 5px;">Room 108</button>
+                        <button class="room-btn btn btn-primary" data-floor="1" data-room="109" style="margin-bottom: 5px;">Room 109</button>
+                        <button class="room-btn btn btn-primary" data-floor="1" data-room="110" style="margin-bottom: 5px;">Room 110</button>
+                    </div>
+                </div>
+            </div>
+            <div class="content section2">
+                <div class="container d-flex justify-content-center align-items-center">
+                    <div style="width: 509px;">
+                        <button class="room-btn btn btn-primary" data-floor="2" data-room="201" style="margin-bottom: 5px;">Room 201</button>
+                        <button class="room-btn btn btn-primary" data-floor="2" data-room="202" style="margin-bottom: 5px;">Room 202</button>
+                        <button class="room-btn btn btn-primary" data-floor="2" data-room="203" style="margin-bottom: 5px;">Room 203</button>
+                        <button class="room-btn btn btn-primary" data-floor="2" data-room="204" style="margin-bottom: 5px;">Room 204</button>
+                        <button class="room-btn btn btn-primary" data-floor="2" data-room="205" style="margin-bottom: 5px;">Room 205</button>
+                        <button class="room-btn btn btn-primary" data-floor="2" data-room="206" style="margin-bottom: 5px;">Room 206</button>
+                        <button class="room-btn btn btn-primary" data-floor="2" data-room="207" style="margin-bottom: 5px;">Room 207</button>
+                        <button class="room-btn btn btn-primary" data-floor="2" data-room="208" style="margin-bottom: 5px;">Room 208</button>
+                        <button class="room-btn btn btn-primary" data-floor="2" data-room="209" style="margin-bottom: 5px;">Room 209</button>
+                        <button class="room-btn btn btn-primary" data-floor="2" data-room="210" style="margin-bottom: 5px;">Room 210</button>
+                        <button class="room-btn btn btn-primary" data-floor="2" data-room="211" style="margin-bottom: 5px;">Room 211</button>
+                        <button class="room-btn btn btn-primary" data-floor="2" data-room="212" style="margin-bottom: 5px;">Room 212</button>
+                        <button class="room-btn btn btn-primary" data-floor="2" data-room="213" style="margin-bottom: 5px;">Room 213</button>
+                        <button class="room-btn btn btn-primary" data-floor="2" data-room="214" style="margin-bottom: 5px;">Room 214</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <div id="room-details" class="room-details" style="display: none;margin-left: 252px;">
+            <!-- Room details will be inserted here -->
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.title').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.title').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                document.querySelector('.content.' + this.classList[1]).classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('.room-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const floor = this.getAttribute('data-floor');
+                const roomNumber = this.getAttribute('data-room');
+
+                fetch(`/get-room-details/?floor=${floor}&room_number=${roomNumber}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const roomDetailsContainer = document.getElementById('room-details');
+                        roomDetailsContainer.innerHTML = ''; // Clear previous details
+
+                        data.forEach(item => {
+                            const roomDetail = document.createElement('div');
+                            roomDetail.className = 'room-details-item';
+                            roomDetail.innerHTML = `<p><strong>Name:</strong> ${item.name}</p><p><strong>USN:</strong> ${item.usn}</p>`;
+                            roomDetailsContainer.appendChild(roomDetail);
+                        });
+
+                        roomDetailsContainer.style.display = 'block';
+                    })
+                    .catch(error => console.error('Error fetching room details:', error));
+            });
+        });
+    </script>
+</body>
+</html>
+{% endblock content %}

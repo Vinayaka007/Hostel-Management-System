@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div id="" class="services-area area-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="section-headline services-head text-center">
+                        <h2>Welcome, {{ user.full_name }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center">
+                <!-- First Row -->
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="about-move">
+                        <div class="services-details">
+                            <div class="single-services">
+                                <a class="services-icon" href="{% url "apply_for_hostel" %}">
+                                    <i class="bi bi-briefcase"></i>
+                                </a>
+                                <h4>Apply for Hostel</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="about-move">
+                        <div class="services-details">
+                            <div class="single-services">
+                                <a class="services-icon" href="{% url "room_allotment"%}">
+                                    <i class="bi bi-card-checklist"></i>
+                                </a>
+                                <h4>Room</h4>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center">
+                <!-- Second Row -->
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="about-move">
+                        <div class="services-details">
+                            <div class="single-services">
+                                <a class="services-icon" href="{% url "notice_list_user" %}">
+                                    <i class="bi bi-calendar4-week"></i>
+                                </a>
+                                <h4>Notice</h4>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="about-move">
+                        <div class="services-details">
+                            <div class="single-services">
+                                <a class="services-icon" href="{% url "complaint_box" %}">
+                                    <i class="bi bi-calendar4-week"></i>
+                                </a>
+                                <h4>complaint</h4>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- End Services Section -->
+    
+
+{% endblock content %}
+
