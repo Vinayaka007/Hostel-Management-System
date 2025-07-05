@@ -2,7 +2,7 @@ This project is designed to streamline and automate the daily operations of a ho
 
 **Key features include:**
 
-<b>Student Registration and Login: Secure student onboarding with individual accounts.</b>
+<ul>Student Registration and Login: Secure student onboarding with individual accounts.</ul>
 
 Room Allotment Management: Automated allocation of rooms to students based on availability.
 
